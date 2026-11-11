@@ -1,0 +1,226 @@
+[
+  {
+    "bug": "bug1",
+    "case": "normal",
+    "input": "last_n([10, 20, 30, 40, 50], 2)",
+    "expected": "[40, 50]",
+    "actual": "[40, 50]",
+    "pass": true
+  },
+  {
+    "bug": "bug1",
+    "case": "zero",
+    "input": "last_n([10, 20, 30, 40, 50], 0)",
+    "expected": "[]",
+    "actual": "[]",
+    "pass": true
+  },
+  {
+    "bug": "bug1",
+    "case": "full length",
+    "input": "last_n([10, 20, 30, 40, 50], 5)",
+    "expected": "[10, 20, 30, 40, 50]",
+    "actual": "[10, 20, 30, 40, 50]",
+    "pass": true
+  },
+  {
+    "bug": "bug1",
+    "case": "too large",
+    "input": "last_n([10, 20, 30, 40, 50], 8)",
+    "expected": "[10, 20, 30, 40, 50]",
+    "actual": "[10, 20, 30, 40, 50]",
+    "pass": true
+  },
+  {
+    "bug": "bug1",
+    "case": "negative n",
+    "input": "last_n([1,2], -1)",
+    "expected": "ValueError",
+    "actual": "ValueError",
+    "pass": true
+  },
+  {
+    "bug": "bug2",
+    "case": "mixed",
+    "input": "calculate_total([{'price': 12}, {'price': 3}, {'item': 'sample'}, {'price': 5}])",
+    "expected": "20",
+    "actual": "20",
+    "pass": true
+  },
+  {
+    "bug": "bug2",
+    "case": "missing price",
+    "input": "calculate_total([{'item': 'sample'}])",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug2",
+    "case": "empty",
+    "input": "calculate_total([])",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug2",
+    "case": "zero price",
+    "input": "calculate_total([{'price': 0}, {'price': 7}])",
+    "expected": "7",
+    "actual": "7",
+    "pass": true
+  },
+  {
+    "bug": "bug3",
+    "case": "sample",
+    "input": "calculateAverage([70,80,90])",
+    "expected": "80",
+    "actual": "80",
+    "pass": true
+  },
+  {
+    "bug": "bug3",
+    "case": "empty",
+    "input": "calculateAverage([])",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug3",
+    "case": "two values",
+    "input": "calculateAverage([10,20])",
+    "expected": "15",
+    "actual": "15",
+    "pass": true
+  },
+  {
+    "bug": "bug3",
+    "case": "main output",
+    "input": "node bug3_fixed.js",
+    "expected": "Average: 80\nExpected average: 80",
+    "actual": "Average: 80\nExpected average: 80",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "10% discount",
+    "input": "applyDiscount(100, 0.1)",
+    "expected": "90",
+    "actual": "90",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "25% discount",
+    "input": "applyDiscount(40, 0.25)",
+    "expected": "30",
+    "actual": "30",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "0% discount",
+    "input": "applyDiscount(100, 0)",
+    "expected": "100",
+    "actual": "100",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "100% discount",
+    "input": "applyDiscount(100, 1)",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "negative rate",
+    "input": "applyDiscount(100, -0.1)",
+    "expected": "Error",
+    "actual": "Error",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "too large rate",
+    "input": "applyDiscount(100, 1.1)",
+    "expected": "Error",
+    "actual": "Error",
+    "pass": true
+  },
+  {
+    "bug": "bug4",
+    "case": "main output",
+    "input": "node bug4_fixed.js",
+    "expected": "Keyboard: $90.00\nMouse: $30.00\nExpected final prices: $90.00 and $30.00",
+    "actual": "Keyboard: $90.00\nMouse: $30.00\nExpected final prices: $90.00 and $30.00",
+    "pass": true
+  },
+  {
+    "bug": "bug5",
+    "case": "main output (strict build)",
+    "input": "gcc -Werror && execute",
+    "expected": "Sum: 15\nExpected sum: 15",
+    "actual": "Sum: 15\nExpected sum: 15",
+    "pass": true
+  },
+  {
+    "bug": "bug6",
+    "case": "main output (strict build)",
+    "input": "gcc -Werror && execute",
+    "expected": "Administrator recognized\nExpected: Administrator recognized",
+    "actual": "Administrator recognized\nExpected: Administrator recognized",
+    "pass": true
+  },
+  {
+    "bug": "bug5",
+    "case": "three values",
+    "input": "{2,4,6}, count=3",
+    "expected": "12",
+    "actual": "12",
+    "pass": true
+  },
+  {
+    "bug": "bug5",
+    "case": "zero count",
+    "input": "{2,4,6}, count=0",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug5",
+    "case": "one value",
+    "input": "{2,4,6}, count=1",
+    "expected": "2",
+    "actual": "2",
+    "pass": true
+  },
+  {
+    "bug": "bug6",
+    "case": "correct username",
+    "input": "\"admin\"",
+    "expected": "1",
+    "actual": "1",
+    "pass": true
+  },
+  {
+    "bug": "bug6",
+    "case": "other username",
+    "input": "\"guest\"",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  },
+  {
+    "bug": "bug6",
+    "case": "case-sensitive",
+    "input": "\"ADMIN\"",
+    "expected": "0",
+    "actual": "0",
+    "pass": true
+  }
+]

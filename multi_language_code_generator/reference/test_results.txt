@@ -1,0 +1,25 @@
+test_01_spec_normal (test_01_02.LogAnalyzerTests.test_01_spec_normal) ... ok
+test_02_spec_empty (test_01_02.LogAnalyzerTests.test_02_spec_empty) ... ok
+test_03_spec_malformed (test_03_04.LogAnalyzerTests.test_03_spec_malformed) ... ok
+test_04_spec_duplicates (test_03_04.LogAnalyzerTests.test_04_spec_duplicates) ... ok
+test_05_spec_all_errors_tied (test_05_06.LogAnalyzerTests.test_05_spec_all_errors_tied) ... ok
+test_06_spec_validation (test_05_06.LogAnalyzerTests.test_06_spec_validation) ... ok
+test_07_only_blank_lines (test_07_08.LogAnalyzerTests.test_07_only_blank_lines) ... ok
+test_08_invalid_field_counts (test_07_08.LogAnalyzerTests.test_08_invalid_field_counts) ... ok
+test_09_invalid_ipv4_values (test_09_10.LogAnalyzerTests.test_09_invalid_ipv4_values) ... ok
+test_10_calendar_validation_and_leap_day (test_09_10.LogAnalyzerTests.test_10_calendar_validation_and_leap_day) ... ok
+test_11_invalid_status_formats (test_11_12.LogAnalyzerTests.test_11_invalid_status_formats) ... ok
+test_12_method_case_sensitive (test_11_12.LogAnalyzerTests.test_12_method_case_sensitive) ... ok
+test_13_path_validation_and_case (test_13_14.LogAnalyzerTests.test_13_path_validation_and_case) ... ok
+test_14_query_strings_distinct (test_13_14.LogAnalyzerTests.test_14_query_strings_distinct) ... ok
+test_15_status_boundary_values (test_15_16.LogAnalyzerTests.test_15_status_boundary_values) ... ok
+test_16_round_half_up (test_15_16.LogAnalyzerTests.test_16_round_half_up) ... ok
+test_17_multiple_paths_top_three (test_17_18.LogAnalyzerTests.test_17_multiple_paths_top_three) ... ok
+test_18_crlf_no_final_newline (test_17_18.LogAnalyzerTests.test_18_crlf_no_final_newline) ... ok
+test_19_parse_line_raises (test_19_20.LogAnalyzerTests.test_19_parse_line_raises) ... ok
+test_20_cli_reads_stdin_and_returns_json (test_19_20.LogAnalyzerTests.test_20_cli_reads_stdin_and_returns_json) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.029s
+
+OK

@@ -1,60 +1,130 @@
 # Smart Bug Bounty — Fix Validation
 
-## Validation Method
+## Source-to-Fix Comparison
 
-All six files were corrected using minimal changes. The original buggy snippets in `bug_snippets/` remain unchanged. The corrected files were executed using Python assertions, Node.js assertions, and temporary Java assertion harnesses. Five checks were executed for each fix (30 checks total). These tests ran locally when this package was prepared; rerun them on your own machine before submitting.
+The comparisons below are **between the original files in `../bug_snippets/` and their corresponding fixed files in this folder**. It is expected that a removed expression such as `.sort()` does not appear in the fixed file; it appears in the original file. No original files were edited.
 
-| Original file | Fixed file | Original issue | Fix applied | Test cases | Result |
-|---|---|---|---|---:|---|
-| `bug1.py` | `bug1_fixed.py` | Off-by-one list slice | Changed `items[-n + 1:]` to `items[-n:]`. | 5 | PASS |
-| `bug2.py` | `bug2_fixed.py` | Divided by all entries instead of valid entries | Changed denominator from `len(scores)` to `count`. | 5 | PASS |
-| `bug3.js` | `bug3_fixed.js` | Excluded price equal to maximum | Changed `< maxPrice` to `<= maxPrice`. | 5 | PASS |
-| `bug4.js` | `bug4_fixed.js` | Sorted deduplicated names alphabetically | Removed `.sort()` to preserve insertion order. | 5 | PASS |
-| `bug5.java` | `bug5_fixed.java` | Initialized maximum to 0 | Initialized `largest` to `values[0]` after the existing empty check. | 5 | PASS |
-| `bug6.java` | `bug6_fixed.java` | Skipped last index of inclusive range | Changed loop condition from `i < end` to `i <= end`. | 5 | PASS |
+Each issue was confirmed by inspecting both source versions. The fixed behavior was verified with `run_validation.py`. The test runner performs 5 checks per snippet, for 30 checks overall.
 
-## Test Details
+## Bug 1: `bug1.py` → `bug1_fixed.py`
 
-### bug1.py
-- **Original issue:** Off-by-one list slice.
-- **Fix applied:** Changed `items[-n + 1:]` to `items[-n:]`.
-- **Tests:** Last 2; last 1; zero; n greater than length; input unchanged.
-- **Result:** 5/5 checks passed.
+- **Original issue:** List slicing returned one fewer than requested.
+- **Original file:** `../bug_snippets/bug1.py`
+- **Fixed file:** `bug1_fixed.py`
+- **Before (original buggy code):**
+```python
+return items[-n + 1:]
+```
+- **After (corresponding corrected code):**
+```python
+return items[-n:]
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Last 2; last 1; zero count; oversized count; original list unchanged.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
 
-### bug2.py
-- **Original issue:** Divided by all entries instead of valid entries.
-- **Fix applied:** Changed denominator from `len(scores)` to `count`.
-- **Tests:** Invalid entries; normal average; empty; all invalid; boundary values.
-- **Result:** 5/5 checks passed.
+## Bug 2: `bug2.py` → `bug2_fixed.py`
 
-### bug3.js
-- **Original issue:** Excluded price equal to maximum.
-- **Fix applied:** Changed `< maxPrice` to `<= maxPrice`.
-- **Tests:** Boundary price; mixed prices; empty; zero max; negative max rejection.
-- **Result:** 5/5 checks passed.
+- **Original issue:** Average divided by all input entries, including invalid ones.
+- **Original file:** `../bug_snippets/bug2.py`
+- **Fixed file:** `bug2_fixed.py`
+- **Before (original buggy code):**
+```python
+return round(total / len(scores), 2)
+```
+- **After (corresponding corrected code):**
+```python
+return round(total / count, 2)
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Invalid score excluded; normal scores; empty input; all invalid; 0/100 boundaries.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
 
-### bug4.js
-- **Original issue:** Sorted deduplicated names alphabetically.
-- **Fix applied:** Removed `.sort()` to preserve insertion order.
-- **Tests:** Mixed case duplicates; empty list; repeats; unsorted first appearance; whitespace.
-- **Result:** 5/5 checks passed.
+## Bug 3: `bug3.js` → `bug3_fixed.js`
 
-### bug5.java
-- **Original issue:** Initialized maximum to 0.
-- **Fix applied:** Initialized `largest` to `values[0]` after the existing empty check.
-- **Tests:** Positive values; negatives; singleton; zero; empty rejection.
-- **Result:** 5/5 checks passed.
+- **Original issue:** Product priced exactly at the limit was excluded.
+- **Original file:** `../bug_snippets/bug3.js`
+- **Fixed file:** `bug3_fixed.js`
+- **Before (original buggy code):**
+```javascript
+if (product.price < maxPrice) {
+```
+- **After (corresponding corrected code):**
+```javascript
+if (product.price <= maxPrice) {
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Equal price; mixed prices; empty products; zero price; invalid negative limit.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
 
-### bug6.java
-- **Original issue:** Skipped last index of inclusive range.
-- **Fix applied:** Changed loop condition from `i < end` to `i <= end`.
-- **Tests:** Middle-to-end; singleton; full array; negative values; invalid range rejection.
-- **Result:** 5/5 checks passed.
+## Bug 4: `bug4.js` → `bug4_fixed.js`
 
-## Reproduce the Tests
+- **Original issue:** Alphabetical sorting destroyed first-seen username order.
+- **Original file:** `../bug_snippets/bug4.js`
+- **Fixed file:** `bug4_fixed.js`
+- **Before (original buggy code):**
+```javascript
+return result.sort();
+```
+- **After (corresponding corrected code):**
+```javascript
+return result;
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Case insensitive; empty; duplicates; insertion order; whitespace normalization.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
 
-Python and Node.js snippets can be verified by importing the functions from the `bug_fixes/` directory and applying the examples in this document. For Java, compile `bug5_fixed.java` and `bug6_fixed.java` separately (`javac bug5_fixed.java bug6_fixed.java`) and exercise `Bug5.maxValue` and `Bug6.rangeSum` with a small Java test runner. Java classes remain package-private to support the assignment-required filenames.
+## Bug 5: `bug5.java` → `bug5_fixed.java`
 
-## Limitations
+- **Original issue:** Starting maximum at zero produced a wrong result for all-negative arrays.
+- **Original file:** `../bug_snippets/bug5.java`
+- **Fixed file:** `bug5_fixed.java`
+- **Before (original buggy code):**
+```java
+int largest = 0;
+```
+- **After (corresponding corrected code):**
+```java
+int largest = values[0];
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Positive numbers; negatives; singleton; zero; empty array throws.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
 
-These checks demonstrate the specified bug fixes; they are not exhaustive proofs of correctness. In particular, the minimal fixes intentionally do not redesign input validation for unrelated malformed inputs.
+## Bug 6: `bug6.java` → `bug6_fixed.java`
+
+- **Original issue:** Exclusive end check omitted the last element.
+- **Original file:** `../bug_snippets/bug6.java`
+- **Fixed file:** `bug6_fixed.java`
+- **Before (original buggy code):**
+```java
+for (int i = start; i < end; i++) {
+```
+- **After (corresponding corrected code):**
+```java
+for (int i = start; i <= end; i++) {
+```
+- **Fix applied:** Replaced the original expression above with the corrected expression shown. Other surrounding code and validations were retained.
+- **Test scenarios (5):** Middle to end; singleton; full range; negatives; invalid range throws.
+- **Test results:** **5/5 PASS**, using `python3 run_validation.py`.
+
+## Automated Test Evidence
+
+Run from `smart_bug_bounty/bug_fixes/`:
+
+```bash
+python3 run_validation.py
+```
+
+This runner imports the fixed Python functions, executes Node.js assertions against the fixed JavaScript modules, and compiles/runs Java assertions in a temporary directory. It exits nonzero if any check fails.
+
+**Observed result from running the test suite during preparation:**
+```text
+TOTAL: 30/30 PASS
+```
+
+The full per-check output is saved in `test_results.txt`.
+
+## Scope
+
+The test scenarios verify the six originally identified defects and selected boundary cases. They do not establish that the code is error-free for every possible input.

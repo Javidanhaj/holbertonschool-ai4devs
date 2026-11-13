@@ -1,0 +1,32 @@
+PASS 01: bug1 last 2
+PASS 02: bug1 last 1
+PASS 03: bug1 zero
+PASS 04: bug1 oversized
+PASS 05: bug1 no mutation
+PASS 06: bug2 ignores invalid
+PASS 07: bug2 basic average
+PASS 08: bug2 empty
+PASS 09: bug2 all invalid
+PASS 10: bug2 boundary scores
+PASS 11: bug3 boundary price
+PASS 12: bug3 mixed prices
+PASS 13: bug3 empty list
+PASS 14: bug3 zero price
+PASS 15: bug3 negative limit rejects
+PASS 16: bug4 duplicates case-insensitive
+PASS 17: bug4 empty list
+PASS 18: bug4 repeats
+PASS 19: bug4 insertion order
+PASS 20: bug4 whitespace
+PASS 21: bug5 positive
+PASS 22: bug5 negatives
+PASS 23: bug5 singleton
+PASS 24: bug5 zeros
+PASS 25: bug5 empty rejected
+PASS 26: bug6 middle range
+PASS 27: bug6 singleton
+PASS 28: bug6 full range
+PASS 29: bug6 negatives
+PASS 30: bug6 invalid rejected
+
+TOTAL: 30/30 PASS
